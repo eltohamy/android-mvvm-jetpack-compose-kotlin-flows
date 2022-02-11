@@ -19,7 +19,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.compose.books.R
 import com.compose.books.common.Screen
-import com.compose.books.presentaion.books.BooksListItem
 import com.compose.books.presentaion.books.BooksViewModel
 
 @ExperimentalFoundationApi
@@ -32,7 +31,7 @@ fun BooksListScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
-            AppBar(stringResource(id = R.string.app_name), navController)
+            AppBar(stringResource(id = R.string.app_name), navController, false)
             LazyVerticalGrid(
                 modifier = Modifier.fillMaxSize(),
                 cells = GridCells.Fixed(3),

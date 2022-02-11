@@ -24,7 +24,6 @@ class BooksViewModel @Inject constructor(val getBooksUseCase: GetBooksUseCase) :
     }
 
     private fun getBooks() {
-        getBookJob?.cancel()
         getBookJob = getBooksUseCase().onEach { result ->
             when (result) {
                 is Resource.Loading -> {
@@ -32,6 +31,7 @@ class BooksViewModel @Inject constructor(val getBooksUseCase: GetBooksUseCase) :
                 }
                 is Resource.Success -> {
                     _state.value = BooksListState(booksModel = result.data)
+                    getBookJob?.cancel()
                 }
                 is Resource.Error -> {
                     _state.value = BooksListState(error = result.message ?: "Something went wrong!")
